@@ -1,0 +1,2 @@
+CLASSPATH=`mvn dependency:build-classpath | grep -v INFO | grep -v Downloading:`
+java -classpath `pwd`/target/classes:$CLASSPATH -Dcom.sun.management.jmxremote -Dspringconfig=ptolemy/console/io/console-spring-config.xml ptolemy.vergil.VergilApplication -ptiny
