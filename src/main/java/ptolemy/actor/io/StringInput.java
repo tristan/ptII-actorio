@@ -3,4 +3,5 @@ import ptolemy.kernel.util.NamedObj;
 public interface StringInput {
     public void initialise(NamedObj owner, String id);
     public String getInput(String prompt);
+    public void stop();
 }

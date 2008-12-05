@@ -24,6 +24,9 @@ public class StringInput extends Source {
 
     public PortParameter prompt;
 
+    // the string input device
+    private ptolemy.actor.io.StringInput sin = null;
+
     public void fire() throws IllegalActionException {
 	super.fire();
 
@@ -32,7 +35,7 @@ public class StringInput extends Source {
                 trigger.get(i);
             }
         }
-	ptolemy.actor.io.StringInput sin = IOFactory.getInstance().getStringInput(this, getName());
+	sin = IOFactory.getInstance().getStringInput(this, getName());
 
 	prompt.update();
 	String prompt_value = ((StringToken)prompt.getToken()).stringValue();
@@ -40,5 +43,11 @@ public class StringInput extends Source {
 	String result = sin.getInput(prompt_value);
 
 	output.send(0, new StringToken(result));
+    }
+
+    public void stop() {
+	if (sin != null) {
+	    sin.stop();
+	}
     }
 }
