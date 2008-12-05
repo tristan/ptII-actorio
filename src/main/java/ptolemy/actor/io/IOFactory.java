@@ -27,11 +27,11 @@ public class IOFactory {
     }
 
     public TextOutput getTextOutput(NamedObj owner, String id) {
-	TextOutput out = (TextOutput)this.getOutput(owner, id);
+	TextOutput out = (TextOutput)this.getIODevice(owner, id);
 	if (out == null) {
 	    out = (TextOutput)appcontext.getBean("textoutput");
 	    out.initialise(owner, id);
-	    this.storeOutput(owner, id, out);
+	    this.storeIODevice(owner, id, out);
 	}
 	return out;
     }
@@ -41,33 +41,43 @@ public class IOFactory {
     }
     public GraphOutput getGraphOutput(NamedObj owner, String id, 
 				      GraphOutput.GraphType type) {
-	GraphOutput out = (GraphOutput)this.getOutput(owner, id);
+	GraphOutput out = (GraphOutput)this.getIODevice(owner, id);
 	if (out == null) {
 	    out = (GraphOutput)appcontext.getBean("graphoutput");
 	    out.initialise(owner, id);
 	    out.setType(type);
-	    this.storeOutput(owner, id, out);
+	    this.storeIODevice(owner, id, out);
 	}
 	return out;
     }
 
-    private Object getOutput(NamedObj owner, String id) {
-	HashMap<String, Object> outputs = owners.get(owner);
-	if (outputs == null) {
+    public StringInput getStringInput(NamedObj owner, String id) {
+	StringInput sin = (StringInput)this.getIODevice(owner, id);
+	if (sin == null) {
+	    sin = (StringInput)appcontext.getBean("stringinput");
+	    sin.initialise(owner, id);
+	    this.storeIODevice(owner, id, sin);
+	}
+	return sin;
+    }
+
+    private Object getIODevice(NamedObj owner, String id) {
+	HashMap<String, Object> iodevices = owners.get(owner);
+	if (iodevices == null) {
 	    return null;
 	} else {
-	    Object out = outputs.get(id);
-	    return out;
+	    Object iodevice = iodevices.get(id);
+	    return iodevice;
 	}
     }
 	   
-    private void storeOutput(NamedObj owner, String id, Object output) {
-	HashMap<String, Object> outputs = owners.get(owner);
-	if (outputs == null) {
-	    outputs = new HashMap<String, Object>();
+    private void storeIODevice(NamedObj owner, String id, Object iodevice) {
+	HashMap<String, Object> iodevices = owners.get(owner);
+	if (iodevices == null) {
+	    iodevices = new HashMap<String, Object>();
 	}
-	outputs.put(id, output);
-	owners.put(owner, outputs);
+	iodevices.put(id, iodevice);
+	owners.put(owner, iodevices);
     }
 
     private HashMap<NamedObj, HashMap<String, Object>> owners = new HashMap<NamedObj, HashMap<String, Object>>();

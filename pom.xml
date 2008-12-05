@@ -17,7 +17,8 @@
     <dependency>
       <groupId>edu.berkeley.eecs.ptolemy</groupId>
       <artifactId>ptII</artifactId>
-      <version>7.1.devel-SNAPSHOT</version>
+      <!--<version>7.1.devel.r50844-SNAPSHOT</version>-->
+      <version>7.1.devel.r51499-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -71,8 +72,10 @@
 	  <arguments>
 	    <argument>-classpath</argument>
 	    <classpath/>
+	    <argument>-Dcom.sun.management.jmxremote</argument>
 	    <argument>-Dspringconfig=ptolemy/console/io/console-spring-config.xml</argument>
 	    <argument>ptolemy.vergil.VergilApplication</argument>
+	    <argument>-ptiny</argument>
 	  </arguments>
 	</configuration>
       </plugin>

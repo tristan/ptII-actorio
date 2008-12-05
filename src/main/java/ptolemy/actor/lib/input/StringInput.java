@@ -35,7 +35,7 @@ public class StringInput extends Source {
 	ptolemy.actor.io.StringInput sin = IOFactory.getInstance().getStringInput(this, getName());
 
 	prompt.update();
-	String prompt_value = prompt.getExpression();
+	String prompt_value = ((StringToken)prompt.getToken()).stringValue();
 	System.out.println("got expression " + prompt_value);
 	String result = sin.getInput(prompt_value);
 

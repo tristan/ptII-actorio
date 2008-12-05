@@ -12,4 +12,7 @@
     <property name="width" value="70"/>
     <property name="height" value="20"/>
   </bean>
+  <bean id="stringinput"
+	class="ptolemy.console.io.ConsoleStringInput"
+	scope="prototype"/>
 </beans>
