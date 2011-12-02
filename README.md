@@ -22,6 +22,7 @@ set the PTII environment variable
 > cd $PTII
 
 run the following to install the needed dependencies into your local maven repository:
+
 > mvn install:install-file -DgroupId=jython -DartifactId=jython -Dversion=svn -Dpackaging=jar -Dfile=$PTII/lib/jython.jar
 > mvn install:install-file -DgroupId=javajoystick -DartifactId=joystick -Dversion=0.7 -Dpackaging=jar -Dfile=$PTII/vendors/misc/joystick/Joystick.jar 
 > mvn install:install-file -DgroupId=jxta -DartifactId=jxta -Dversion=1.0 -Dpackaging=jar -Dfile=$PTII/vendors/sun/jxta/jxta.jar
